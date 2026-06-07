@@ -53,8 +53,61 @@ async function getDocument(req: Request, res: Response) {
   }
 }
 
+async function processDocument(req: Request, res: Response) {
+  try {
+    const document = await documentService.processDocument(
+      Number(req.params.id),
+      req.user!.userId
+    )
+
+    return res.status(200).json({
+      msg: 'Processing completed',
+      document
+    })
+  } catch (error) {
+    return res.status(400).json({
+      msg: error instanceof Error ? error.message : 'Failed'
+    })
+  }
+}
+
+async function getStatus(req: Request, res: Response) {
+  try {
+    const document = await documentService.getDocument(
+      Number(req.params.id),
+      req.user!.userId
+    )
+
+    return res.json({
+      status: document.status
+    })
+  } catch {
+    return res.status(404).json({
+      msg: 'Document not found'
+    })
+  }
+}
+
+async function getContent(req: Request, res: Response) {
+  try {
+    const content = await documentService.getContent(
+      Number(req.params.id),
+      req.user!.userId
+    )
+
+    return res.json(content)
+  } catch {
+    return res.status(404).json({
+      msg: 'Content not found'
+    })
+  }
+}
+
 export default {
   upload,
   getDocuments,
-  getDocument
+  getDocument,
+  processDocument,
+  getStatus,
+  getContent
 }

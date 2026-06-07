@@ -1,4 +1,5 @@
-import { integer, pgTable, timestamp, varchar } from 'drizzle-orm/pg-core'
+// import { text } from 'drizzle-orm/gel-core'
+import { integer, pgTable, timestamp, varchar, text } from 'drizzle-orm/pg-core'
 
 export const usersTable = pgTable('users', {
   id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
@@ -22,6 +23,17 @@ export const documentsTable = pgTable('documents', {
   fileSize: integer('file_size').notNull(),
   storagePath: varchar('storage_path', { length: 500 }).notNull(),
   status: varchar('status', { length: 50 }).notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull()
+})
+
+// document content schema
+export const documentContentsTable = pgTable('document_contents', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  documentId: integer('document_id')
+    .references(() => documentsTable.id)
+    .notNull(),
+  content: text('content').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull()
 })

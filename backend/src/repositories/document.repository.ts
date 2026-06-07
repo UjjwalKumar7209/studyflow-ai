@@ -43,8 +43,22 @@ async function findDocumentById(documentId: number) {
   return documents[0] ?? null
 }
 
+async function updateDocumentStatus(documentId: number, status: string) {
+  const document = await db
+    .update(documentsTable)
+    .set({
+      status,
+      updatedAt: new Date()
+    })
+    .where(eq(documentsTable.id, documentId))
+    .returning()
+
+  return document[0]
+}
+
 export default {
   createDocument,
   findDocumentsByUserId,
-  findDocumentById
+  findDocumentById,
+  updateDocumentStatus
 }

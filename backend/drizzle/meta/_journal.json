@@ -15,6 +15,13 @@
       "when": 1780838252431,
       "tag": "0001_rare_wonder_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780849107792,
+      "tag": "0002_steep_stephen_strange",
+      "breakpoints": true
     }
   ]
 }
