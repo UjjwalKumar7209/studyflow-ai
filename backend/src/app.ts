@@ -1,11 +1,11 @@
-import express, { type Request, type Response } from 'express'
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import authRoutes from './routes/auth.routes'
 
 const app = express()
+app.use(cookieParser())
+app.use(express.json())
 
-app.get('/health', (req: Request, res: Response) => {
-  res.json({
-    status: 'ok'
-  })
-})
+app.use('/api/v1/auth', authRoutes)
 
 app.listen(5000)
