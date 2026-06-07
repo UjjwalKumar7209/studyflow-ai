@@ -17,5 +17,6 @@ router.get('/:id', requireAuth, documentController.getDocument)
 router.post('/:id/process', requireAuth, documentController.processDocument)
 router.get('/:id/status', requireAuth, documentController.getStatus)
 router.get('/:id/content', requireAuth, documentController.getContent)
+router.get('/:id/topics', requireAuth, documentController.getTopics)
 
 export default router

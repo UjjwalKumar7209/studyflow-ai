@@ -37,3 +37,15 @@ export const documentContentsTable = pgTable('document_contents', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull()
 })
+
+// topic table
+export const topicsTable = pgTable('topics', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  documentId: integer('document_id')
+    .references(() => documentsTable.id)
+    .notNull(),
+  name: varchar('name', {
+    length: 255
+  }).notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
+})

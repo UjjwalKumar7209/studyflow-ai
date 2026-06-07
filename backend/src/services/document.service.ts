@@ -2,6 +2,8 @@ import documentRepository from '../repositories/document.repository'
 import { extractTextFromPdf } from '../utils/pdf-parser'
 
 import documentContentRepository from '../repositories/document-content.repository'
+import { extractTopics } from '../utils/topic-extractor'
+import topicRepository from '../repositories/topic.repository'
 
 async function uploadDocument(userId: number, file: Express.Multer.File) {
   const document = await documentRepository.createDocument(
@@ -51,6 +53,9 @@ async function processDocument(documentId: number, userId: number) {
     document.id,
     extractedText
   )
+  const topics = await extractTopics(extractedText)
+
+  await topicRepository.createTopics(document.id, topics)
   const updatedDocument = await documentRepository.updateDocumentStatus(
     documentId,
     'COMPLETED'
@@ -69,10 +74,17 @@ async function getContent(documentId: number, userId: number) {
   return content
 }
 
+async function getTopics(documentId: number, userId: number) {
+  await getDocument(documentId, userId)
+
+  return topicRepository.getTopics(documentId)
+}
+
 export default {
   uploadDocument,
   getDocuments,
   getDocument,
   processDocument,
-  getContent
+  getContent,
+  getTopics
 }

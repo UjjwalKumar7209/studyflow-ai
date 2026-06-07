@@ -103,11 +103,22 @@ async function getContent(req: Request, res: Response) {
   }
 }
 
+// get topics
+async function getTopics(req: Request, res: Response) {
+  const topics = await documentService.getTopics(
+    Number(req.params.id),
+    req.user!.userId
+  )
+
+  return res.json(topics)
+}
+
 export default {
   upload,
   getDocuments,
   getDocument,
   processDocument,
   getStatus,
-  getContent
+  getContent,
+  getTopics
 }
