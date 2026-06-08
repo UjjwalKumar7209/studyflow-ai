@@ -18,7 +18,17 @@ async function getTopics(documentId: number) {
     .where(eq(topicsTable.documentId, documentId))
 }
 
+async function findTopicById(topicId: number) {
+  const topics = await db
+    .select()
+    .from(topicsTable)
+    .where(eq(topicsTable.id, topicId))
+
+  return topics[0] ?? null
+}
+
 export default {
   createTopics,
-  getTopics
+  getTopics,
+  findTopicById
 }

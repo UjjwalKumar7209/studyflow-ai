@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
-import { registerSchema } from '../../validators/register.schema'
+import { registerSchema } from '../validators/register.schema'
 import authService from '../services/auth.service'
-import { loginSchema } from '../../validators/login.schema'
+import { loginSchema } from '../validators/login.schema'
 
 async function register(req: Request, res: Response) {
   try {

@@ -49,3 +49,31 @@ export const topicsTable = pgTable('topics', {
   }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 })
+
+export const notesTable = pgTable('notes', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+
+  topicId: integer('topic_id')
+    .references(() => topicsTable.id)
+    .notNull(),
+
+  content: text('content').notNull(),
+
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+
+  updatedAt: timestamp('updated_at').defaultNow().notNull()
+})
+
+export const flashcardsTable = pgTable('flashcards', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+
+  topicId: integer('topic_id')
+    .references(() => topicsTable.id)
+    .notNull(),
+
+  question: text('question').notNull(),
+
+  answer: text('answer').notNull(),
+
+  createdAt: timestamp('created_at').defaultNow().notNull()
+})

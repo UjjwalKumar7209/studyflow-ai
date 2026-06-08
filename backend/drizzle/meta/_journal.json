@@ -29,6 +29,20 @@
       "when": 1780852099257,
       "tag": "0003_ancient_mikhail_rasputin",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1780912940886,
+      "tag": "0004_broken_wonder_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1780914090202,
+      "tag": "0005_sudden_patch",
+      "breakpoints": true
     }
   ]
 }
