@@ -52,28 +52,34 @@ export const topicsTable = pgTable('topics', {
 
 export const notesTable = pgTable('notes', {
   id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
-
   topicId: integer('topic_id')
     .references(() => topicsTable.id)
     .notNull(),
-
   content: text('content').notNull(),
-
   createdAt: timestamp('created_at').defaultNow().notNull(),
-
   updatedAt: timestamp('updated_at').defaultNow().notNull()
 })
 
 export const flashcardsTable = pgTable('flashcards', {
   id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
-
   topicId: integer('topic_id')
     .references(() => topicsTable.id)
     .notNull(),
-
   question: text('question').notNull(),
-
   answer: text('answer').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
+})
 
+export const quizzesTable = pgTable('quizzes', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  topicId: integer('topic_id')
+    .references(() => topicsTable.id)
+    .notNull(),
+  question: text('question').notNull(),
+  optionA: text('option_a').notNull(),
+  optionB: text('option_b').notNull(),
+  optionC: text('option_c').notNull(),
+  optionD: text('option_d').notNull(),
+  correctAnswer: text('correct_answer').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 })
