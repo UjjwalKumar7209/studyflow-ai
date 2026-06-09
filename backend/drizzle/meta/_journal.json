@@ -50,6 +50,34 @@
       "when": 1780914725095,
       "tag": "0006_glorious_thunderbolt",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1780928469681,
+      "tag": "0007_lowly_firestar",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1780929636597,
+      "tag": "0008_talented_smiling_tiger",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1780930100350,
+      "tag": "0009_tiresome_landau",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1780930468575,
+      "tag": "0010_clever_mockingbird",
+      "breakpoints": true
     }
   ]
 }

@@ -1,3 +1,4 @@
+import { eq } from 'drizzle-orm'
 import { db } from '../db'
 import { documentContentsTable } from '../db/schema'
 
@@ -19,7 +20,17 @@ async function findDocumentContent(documentId: number) {
   return result.find((item) => item.documentId === documentId) ?? null
 }
 
+async function getDocumentContent(documentId: number) {
+  const result = await db
+    .select()
+    .from(documentContentsTable)
+    .where(eq(documentContentsTable.documentId, documentId))
+
+  return result[0] ?? null
+}
+
 export default {
   createDocumentContent,
-  findDocumentContent
+  findDocumentContent,
+  getDocumentContent
 }

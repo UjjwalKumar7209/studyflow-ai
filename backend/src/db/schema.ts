@@ -83,3 +83,55 @@ export const quizzesTable = pgTable('quizzes', {
   correctAnswer: text('correct_answer').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 })
+
+export const quizAttemptsTable = pgTable('quiz_attempts', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  userId: integer('user_id')
+    .references(() => usersTable.id)
+    .notNull(),
+  topicId: integer('topic_id')
+    .references(() => topicsTable.id)
+    .notNull(),
+  totalQuestions: integer('total_questions').notNull(),
+  correctAnswers: integer('correct_answers').notNull(),
+  score: integer('score').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
+})
+
+export const weakTopicsTable = pgTable('weak_topics', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  userId: integer('user_id')
+    .references(() => usersTable.id)
+    .notNull(),
+  topicId: integer('topic_id')
+    .references(() => topicsTable.id)
+    .notNull(),
+  averageScore: integer('average_score').notNull(),
+  weaknessScore: integer('weakness_score').notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull()
+})
+
+export const revisionsTable = pgTable('revisions', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  userId: integer('user_id')
+    .references(() => usersTable.id)
+    .notNull(),
+  topicId: integer('topic_id')
+    .references(() => topicsTable.id)
+    .notNull(),
+  content: text('content').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
+})
+
+export const chatsTable = pgTable('chats', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  userId: integer('user_id')
+    .references(() => usersTable.id)
+    .notNull(),
+  documentId: integer('document_id')
+    .references(() => documentsTable.id)
+    .notNull(),
+  question: text('question').notNull(),
+  answer: text('answer').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull()
+})
