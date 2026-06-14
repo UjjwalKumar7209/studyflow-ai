@@ -135,3 +135,14 @@ export const chatsTable = pgTable('chats', {
   answer: text('answer').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull()
 })
+
+export const metricsTable = pgTable('metrics', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  key: varchar('key', {
+    length: 100
+  })
+    .notNull()
+    .unique(),
+  value: integer('value').notNull().default(0),
+  updatedAt: timestamp('updated_at').defaultNow().notNull()
+})
