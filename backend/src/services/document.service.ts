@@ -15,6 +15,7 @@ async function uploadDocument(userId: number, file: Express.Multer.File) {
     file.path
   )
 
+
   return document
 }
 
@@ -56,6 +57,7 @@ async function processDocument(documentId: number, userId: number) {
   const topics = await extractTopics(extractedText)
 
   await topicRepository.createTopics(document.id, topics)
+
   const updatedDocument = await documentRepository.updateDocumentStatus(
     documentId,
     'COMPLETED'

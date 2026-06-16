@@ -23,7 +23,10 @@ async function generateTopicQuiz(topicId: number) {
     throw new Error('Generate notes first')
   }
 
+  const startTime = Date.now()
   const quizzes = await generateQuiz(topic.name, note.content)
+  const durationMs = Date.now() - startTime
+
 
   return quizRepository.createQuizzes(topicId, quizzes)
 }

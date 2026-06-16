@@ -25,7 +25,10 @@ async function generateRevisionNotes(userId: number, topicId: number) {
     throw new Error('Notes not found')
   }
 
+  const startTime = Date.now()
   const content = await generateRevision(topic.name, notes.content)
+  console.log(content)
+
 
   return revisionRepository.createRevision(userId, topicId, content)
 }

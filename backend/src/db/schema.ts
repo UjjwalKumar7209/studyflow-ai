@@ -1,5 +1,12 @@
 // import { text } from 'drizzle-orm/gel-core'
-import { integer, pgTable, timestamp, varchar, text } from 'drizzle-orm/pg-core'
+import {
+  integer,
+  pgTable,
+  timestamp,
+  varchar,
+  text,
+  real
+} from 'drizzle-orm/pg-core'
 
 export const usersTable = pgTable('users', {
   id: integer('id').primaryKey().generatedAlwaysAsIdentity(),

@@ -19,5 +19,6 @@ Requirements:
 Return plain text.
 `
 
-  return generateAIResponse(prompt)
+  const response = await generateAIResponse(prompt)
+  return response
 }

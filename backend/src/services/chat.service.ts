@@ -16,7 +16,9 @@ async function askQuestion(
     throw new Error('Document content not found')
   }
 
+  const startTime = Date.now()
   const answer = await askDocument(document.content, question)
+  const durationMs = Date.now() - startTime
 
   await chatRepository.createChat(userId, documentId, question, answer)
 

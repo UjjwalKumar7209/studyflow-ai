@@ -17,6 +17,7 @@ async function generateTopicNotes(topicId: number) {
     return existingNote
   }
 
+  const startTime = Date.now()
   const content = await generateNotes(topic.name)
 
   return noteRepository.createNote(topicId, content)

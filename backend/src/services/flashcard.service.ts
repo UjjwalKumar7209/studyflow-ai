@@ -22,6 +22,7 @@ async function generateTopicFlashcards(topicId: number) {
     throw new Error('Generate notes first')
   }
 
+  const startTime = Date.now()
   const flashcards = await generateFlashcards(topic.name, note.content)
 
   return flashcardRepository.createFlashcards(topicId, flashcards)
