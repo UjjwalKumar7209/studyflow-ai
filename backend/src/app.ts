@@ -26,4 +26,4 @@ app.use('/api/v1', weakTopicRoutes)
 app.use('/api/v1', revisionRoutes)
 app.use('/api/v1', chatRoutes)
 
-app.listen(5000)
+export default app
