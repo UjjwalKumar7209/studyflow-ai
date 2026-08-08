@@ -17,7 +17,7 @@ import cors from 'cors'
 
 app.use(
   cors({
-    origin: "https://studyflow-ai-k1vx.vercel.app",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 )
