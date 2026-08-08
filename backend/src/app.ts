@@ -15,6 +15,11 @@ const app = express()
 app.use(cookieParser())
 app.use(express.json())
 
+app.get('/', (req, res) => {
+  res.json({
+    msg: 'Server is running'
+  })
+})
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/documents', documentRoutes)
 app.use('/api/v1', noteRoutes)
