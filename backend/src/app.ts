@@ -12,6 +12,16 @@ import revisionRoutes from './routes/revision.routes'
 import chatRoutes from './routes/chat.routes'
 
 const app = express()
+
+import cors from 'cors'
+
+app.use(
+  cors({
+    origin: "https://studyflow-ai-k1vx.vercel.app",
+    credentials: true,
+  })
+)
+
 app.use(cookieParser())
 app.use(express.json())
 
