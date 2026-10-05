@@ -9,7 +9,11 @@ bun install
 To run:
 
 ```bash
-bun run index.ts
+# Development mode with automatic reload
+bun run dev
+
+# Normal server mode
+bun run start
 ```
 
 This project was created using `bun init` in bun v1.3.11. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.

@@ -2,6 +2,10 @@
   "name": "backend",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun --watch src/server.ts",
+    "start": "bun src/server.ts"
+  },
   "devDependencies": {
     "@types/axios": "^0.14.4",
     "@types/bcrypt": "^6.0.0",
