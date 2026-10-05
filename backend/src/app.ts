@@ -15,9 +15,25 @@ const app = express()
 
 import cors from 'cors'
 
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:3000',
+  'http://127.0.0.1:3000'
+].filter((origin): origin is string => Boolean(origin))
+
+const isDevelopmentOrigin = (origin: string) =>
+  process.env.NODE_ENV !== 'production' &&
+  /^https?:\/\/(localhost|127\.0\.0\.1|(?:\d{1,3}\.){3}\d{1,3}):\d+$/.test(origin)
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin) || isDevelopmentOrigin(origin)) {
+        return callback(null, true)
+      }
+
+      return callback(new Error('Origin is not allowed by CORS'))
+    },
     credentials: true,
   })
 )
